@@ -7,8 +7,7 @@ import CONFIG from 'config';
 
 type logLevel = 'error' | 'info' | 'debug';
 const logFormat = Winston.format.printf(
-  ({ timestamp, level, message }: { [key: string]: string }) =>
-    `${timestamp} ${level} ${message}`
+  ({ timestamp, level, message }: { [key: string]: string }) => `${timestamp} ${level} ${message}`
 );
 const logDirPath = path.join(__dirname, CONFIG.LOG_DIR);
 
@@ -29,15 +28,10 @@ const getWinstonRotatingFileLogger = (logLevel: logLevel): WinstonDaily =>
     zippedArchive: true
   });
 
-const getWinstonConsoleLogger = (
-  logLevel: logLevel
-): Winston.transports.ConsoleTransportInstance =>
+const getWinstonConsoleLogger = (logLevel: logLevel): Winston.transports.ConsoleTransportInstance =>
   new Winston.transports.Console({
     level: logLevel,
-    format: Winston.format.combine(
-      Winston.format.splat(),
-      Winston.format.colorize()
-    )
+    format: Winston.format.combine(Winston.format.splat(), Winston.format.colorize())
   });
 
 const logger = Winston.createLogger({

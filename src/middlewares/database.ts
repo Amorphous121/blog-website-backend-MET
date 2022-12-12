@@ -9,7 +9,5 @@ export const connectDb = async (): Promise<typeof import('mongoose')> => {
   }
   set('strictQuery', true);
 
-  return await connect(
-    `mongodb://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}`
-  );
+  return await connect(`mongodb://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}`);
 };

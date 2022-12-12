@@ -2,11 +2,7 @@ import { model, Schema } from 'mongoose';
 
 import { IUserLikes } from 'interfaces/user-likes.interface';
 import { ENTITY_TYPE } from 'enums';
-import {
-  defaultPreFindMiddleware,
-  defaultSchemaFields,
-  schemaOptions
-} from './schema-utils';
+import { schemaOptions, defaultSchemaFields, defaultPreFindMiddleware } from './schema-utils';
 
 const userLikesSchema = new Schema<IUserLikes>(
   {
@@ -18,10 +14,7 @@ const userLikesSchema = new Schema<IUserLikes>(
   { ...schemaOptions }
 );
 
-userLikesSchema.pre(
-  /\b(find|findOne|countDocuments|findById)\b/,
-  defaultPreFindMiddleware
-);
+userLikesSchema.pre(/\b(find|findOne|countDocuments|findById)\b/, defaultPreFindMiddleware);
 
 userLikesSchema.index({ entityId: 1, isDeleted: 1 });
 userLikesSchema.index({ enitityType: 1, isDeleted: 1 });

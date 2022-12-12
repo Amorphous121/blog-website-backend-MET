@@ -1,11 +1,7 @@
 import { model, Schema } from 'mongoose';
 
 import { ILikesCount } from 'interfaces/likes-count.interface';
-import {
-  defaultPreFindMiddleware,
-  defaultSchemaFields,
-  schemaOptions
-} from './schema-utils';
+import { defaultPreFindMiddleware, defaultSchemaFields, schemaOptions } from './schema-utils';
 
 const likesCountSchema = new Schema<ILikesCount>(
   {
@@ -16,10 +12,7 @@ const likesCountSchema = new Schema<ILikesCount>(
   { ...schemaOptions }
 );
 
-likesCountSchema.pre(
-  /\b(find|findOne|countDocuments|findById)\b/,
-  defaultPreFindMiddleware
-);
+likesCountSchema.pre(/\b(find|findOne|countDocuments|findById)\b/, defaultPreFindMiddleware);
 
 likesCountSchema.index({ entityId: 1, isDeleted: 1 });
 

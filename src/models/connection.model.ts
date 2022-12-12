@@ -1,11 +1,7 @@
 import { model, Schema } from 'mongoose';
 
 import { IConnection } from 'interfaces/connection.interface';
-import {
-  defaultPreFindMiddleware,
-  defaultSchemaFields,
-  schemaOptions
-} from './schema-utils';
+import { defaultPreFindMiddleware, defaultSchemaFields, schemaOptions } from './schema-utils';
 
 const connectionSchema = new Schema<IConnection>(
   {
@@ -17,10 +13,7 @@ const connectionSchema = new Schema<IConnection>(
   { ...schemaOptions }
 );
 
-connectionSchema.pre(
-  /\b(find|findOne|countDocuments|findById)\b/,
-  defaultPreFindMiddleware
-);
+connectionSchema.pre(/\b(find|findOne|countDocuments|findById)\b/, defaultPreFindMiddleware);
 
 connectionSchema.index({ userId: 1, isDeleted: 1 });
 connectionSchema.index({ follower: 1, isDeleted: 1 });

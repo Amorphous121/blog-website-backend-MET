@@ -1,11 +1,7 @@
 import { model, Schema } from 'mongoose';
 
 import { IComment } from 'interfaces/comment.interface';
-import {
-  defaultPreFindMiddleware,
-  defaultSchemaFields,
-  schemaOptions
-} from './schema-utils';
+import { defaultPreFindMiddleware, defaultSchemaFields, schemaOptions } from './schema-utils';
 
 const commentSchema = new Schema<IComment>(
   {
@@ -17,10 +13,7 @@ const commentSchema = new Schema<IComment>(
   { ...schemaOptions }
 );
 
-commentSchema.pre(
-  /\b(find|findOne|countDocuments|findById)\b/,
-  defaultPreFindMiddleware
-);
+commentSchema.pre(/\b(find|findOne|countDocuments|findById)\b/, defaultPreFindMiddleware);
 
 commentSchema.index({ author: 1, isDeleted: 1 });
 commentSchema.index({ blog: 1, isDeleted: 1 });

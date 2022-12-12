@@ -1,5 +1,6 @@
 import http from 'http';
 import app from 'app';
+
 import CONFIG from 'config';
 import { logger } from 'utils/logger';
 import { connectDb } from 'middlewares/database';
