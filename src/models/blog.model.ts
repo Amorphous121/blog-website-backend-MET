@@ -1,7 +1,12 @@
 import { model, Schema } from 'mongoose';
 
 import { IBlog } from 'interfaces/blog.interface';
-import { schemaOptions, defaultSchemaFields, defaultPreFindMiddleware } from './schema-utils';
+import {
+  schemaOptions,
+  defaultSchemaFields,
+  defaultPreFindMiddleware,
+  defaultRegexForMiddlewares
+} from './schema-utils';
 
 const blogSchema = new Schema<IBlog>(
   {
@@ -13,7 +18,7 @@ const blogSchema = new Schema<IBlog>(
   { ...schemaOptions }
 );
 
-blogSchema.pre(/\b(find|findOne|countDocuments|findById)\b/, defaultPreFindMiddleware);
+blogSchema.pre(defaultRegexForMiddlewares, defaultPreFindMiddleware);
 
 blogSchema.index({ author: 1, isDeleted: 1 });
 

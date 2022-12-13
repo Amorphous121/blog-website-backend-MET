@@ -2,7 +2,12 @@ import { model, Schema } from 'mongoose';
 import { hash, compare } from 'bcrypt';
 
 import { IUser, IUserMethods } from '../interfaces/user.interface';
-import { defaultPreFindMiddleware, defaultSchemaFields, schemaOptions } from './schema-utils';
+import {
+  schemaOptions,
+  defaultSchemaFields,
+  defaultPreFindMiddleware,
+  defaultRegexForMiddlewares
+} from './schema-utils';
 import CONFIG from 'config';
 
 const userSchema = new Schema<IUser, Record<string, never>, IUserMethods>(
@@ -39,7 +44,7 @@ userSchema.pre('save', async function (next) {
   }
 });
 
-userSchema.pre(/\b(find|findOne|countDocuments|findById)\b/, defaultPreFindMiddleware);
+userSchema.pre(defaultRegexForMiddlewares, defaultPreFindMiddleware);
 
 userSchema.index({ email: 1, username: 1, isDeleted: 1 });
 userSchema.index({ isPrivateAccount: 1, isDeleted: 1 });
