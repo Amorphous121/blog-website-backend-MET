@@ -42,7 +42,7 @@ const logger = Winston.createLogger({
   ),
   transports: [
     getWinstonConsoleLogger('info'),
-    getWinstonConsoleLogger('error'),
+    // getWinstonConsoleLogger('error'),
     // getWinstonConsoleLogger('debug'),
     getWinstonRotatingFileLogger('info'),
     getWinstonRotatingFileLogger('error')

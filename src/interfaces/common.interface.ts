@@ -2,7 +2,8 @@ import { ObjectId, PopulatedDoc } from 'mongoose';
 
 import { IUser } from './user.interface';
 
-export interface IDeletionFields {
+export interface IDefaultFields {
+  _id: ObjectId
   isDeleted: boolean
   deletedAt: Date
   deletedBy: ObjectId | PopulatedDoc<IUser>

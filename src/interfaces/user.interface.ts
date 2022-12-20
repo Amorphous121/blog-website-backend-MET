@@ -1,6 +1,6 @@
-import { IDateUpdateFields, IDeletionFields } from './common.interface';
+import { IDateUpdateFields, IDefaultFields } from './common.interface';
 
-export interface IUser extends IDeletionFields, IDateUpdateFields {
+export interface IUser extends IDefaultFields, IDateUpdateFields {
   firstName: string
   lastName: string
   email: string

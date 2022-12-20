@@ -7,6 +7,7 @@ import morgan from 'morgan';
 import CONFIG from '../config';
 import { stream } from 'utils/logger';
 import IndexRouter from 'routes/index.route';
+import ErrorHandler from 'middlewares/error.middleware';
 
 const app = express();
 
@@ -19,5 +20,11 @@ app.use(morgan(`${CONFIG.isDev ? 'dev' : 'combined'}`, { stream }));
 
 /* Register the main Route to application. */
 app.use(IndexRouter);
+
+/* Error Handling */
+const errorHandler = new ErrorHandler();
+app.use(errorHandler.notFoundRouteHandler);
+app.use(errorHandler.validationErrorHandler);
+app.use(errorHandler.mainHandler);
 
 export default app;
