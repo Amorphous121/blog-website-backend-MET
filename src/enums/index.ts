@@ -14,3 +14,8 @@ export enum VALIDATION_ENTITIES {
   PARAMS = 'params',
   QUERY = 'query'
 }
+
+export enum USER_ROLES {
+  USER = 'user',
+  ADMIN = 'admin'
+}

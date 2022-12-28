@@ -27,7 +27,6 @@ export const defaultPreFindMiddleware: PreMiddlewareFunction = async function (
   if (!('isDeleted' in this.getFilter())) {
     this.setQuery({ isDeleted: false });
   }
-
   if (!('sort' in this.getOptions())) {
     void this.setOptions({ sort: { createAt: -1 } });
   }

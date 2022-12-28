@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { Model, model, Schema } from 'mongoose';
 import { hash, compare } from 'bcrypt';
 
 import { IUser, IUserMethods } from '../interfaces/user.interface';
@@ -10,7 +10,9 @@ import {
 } from './schema-utils';
 import CONFIG from 'config';
 
-const userSchema = new Schema<IUser, Record<string, never>, IUserMethods>(
+type TUserModel = Model<IUser, {}, IUserMethods>;
+
+const userSchema = new Schema<IUser, TUserModel, IUserMethods>(
   {
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
@@ -48,6 +50,6 @@ userSchema.pre(defaultRegexForMiddlewares, defaultPreFindMiddleware);
 
 userSchema.index({ email: 1, username: 1, isDeleted: 1 });
 userSchema.index({ isPrivateAccount: 1, isDeleted: 1 });
-const UserModel = model('user', userSchema);
+const UserModel = model<IUser, TUserModel>('user', userSchema);
 
 export default UserModel;
