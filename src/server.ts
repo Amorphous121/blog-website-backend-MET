@@ -3,7 +3,7 @@ import app from 'app';
 
 import CONFIG from 'config';
 import { logger } from 'utils/logger';
-import { connectDb } from 'middlewares/database';
+import { connectDb } from 'database';
 
 const server = http.createServer(app);
 

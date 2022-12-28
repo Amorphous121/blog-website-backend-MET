@@ -8,3 +8,9 @@ export enum NODE_ENVs {
   TEST = 'test',
   PRODUCTION = 'production'
 }
+
+export enum VALIDATION_ENTITIES {
+  BODY = 'body',
+  PARAMS = 'params',
+  QUERY = 'query'
+}

@@ -1,3 +1,4 @@
+import { ObjectSchema } from 'joi';
 import { ObjectId, PopulatedDoc } from 'mongoose';
 
 import { IUser } from './user.interface';
@@ -12,4 +13,8 @@ export interface IDefaultFields {
 export interface IDateUpdateFields {
   createdAt: Date
   updatedAt: Date
+}
+
+export interface IValidationSchema {
+  [index: string]: ObjectSchema
 }

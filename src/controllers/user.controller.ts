@@ -9,9 +9,9 @@ export const getAllUsers: RequestHandler<{ id: string }, {}> = async (req, res, 
   return res.status(200).json({ users });
 };
 
-export const createUser: RequestHandler = async (req, res, next) => {
+export const createUser: RequestHandler<{}, any, ICreateUser, {}> = async (req, res, next) => {
   try {
-    const payload = req.body as ICreateUser;
+    const payload = req.body;
     const user = await UserService.createUser(payload);
     return res.status(200).json(getSuccessResponse('User created successfully.', user));
   } catch (error) {
@@ -19,10 +19,10 @@ export const createUser: RequestHandler = async (req, res, next) => {
   }
 };
 
-export const getUserById: RequestHandler<{ id: string }> = async (req, res, next) => {
+export const getUserById: RequestHandler<{ userId: string }> = async (req, res, next) => {
   try {
-    const id = req.params.id;
-    const user = await UserService.getUserById(id);
+    const { userId } = req.params;
+    const user = await UserService.getUserById(userId);
     return res.status(200).json({ user });
   } catch (error) {
     return next(error);
