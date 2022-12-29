@@ -25,3 +25,10 @@ export const UpdateUserValidation = {
       .required()
   })
 };
+
+export const UserLoginValidation = {
+  body: Joi.object({
+    usernameOrEmail: Joi.string().required(),
+    password: Joi.string().required()
+  })
+};
