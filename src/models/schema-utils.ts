@@ -24,12 +24,14 @@ export const defaultPreFindMiddleware: PreMiddlewareFunction = async function (
   this: Query<any, any, Record<string, never>, any>,
   next: CallbackWithoutResultAndOptionalError
 ): Promise<void> {
-  if (!('isDeleted' in this.getFilter())) {
-    this.setQuery({ isDeleted: false });
-  }
-  if (!('sort' in this.getOptions())) {
-    void this.setOptions({ sort: { createAt: -1 } });
-  }
+  const queryFilters = this.getFilter();
+  const queryOptions = this.getOptions();
 
+  if (!('isDeleted' in queryFilters)) {
+    this.setQuery({ ...queryFilters, isDeleted: false });
+  }
+  if (!('sort' in queryOptions)) {
+    void this.setOptions({ ...queryOptions, sort: { createAt: -1 } });
+  }
   next();
 };
