@@ -8,6 +8,7 @@ import CONFIG from '../config';
 import { stream } from 'utils/logger';
 import IndexRouter from 'routes/index.route';
 import ErrorHandler from 'middlewares/error.middleware';
+import '../middlewares/passport.middleware';
 
 const app = express();
 

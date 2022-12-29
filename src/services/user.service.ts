@@ -34,6 +34,9 @@ export const createUser = async (payload: ICreateUser): Promise<TDefaultUserDocu
 
   if (existingUser != null) {
     if (existingUser.email === payload.email) {
+      throw new HttpException(422, `User with ${payload.email} already exists!`);
+    }
+    if (existingUser.username === payload.username) {
       throw new HttpException(422, `User with ${payload.username} already exists!`);
     }
   }
