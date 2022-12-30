@@ -1,0 +1,68 @@
+{
+  "name": "blog-website-backend-MET",
+  "version": "1.0.0",
+  "description": "Blogging website backend built using express typescript and mongodb",
+  "main": "src/index.ts",
+  "repository": "https://github.com/Amorphous121/blog-website-backend-MET.git",
+  "author": "Prathamesh Patil <prathmeshp658@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install",
+    "dev": "cross-env NODE_ENV=development nodemon",
+    "build": "tsc -p . && tsc-alias",
+    "start": "yarn build &&  cross-env NODE_ENV=production node dist/server.js",
+    "lint": "eslint --ignore-path .gitignore --ext .ts src/ --fix",
+    "format": "prettier --write src"
+  },
+  "lint-staged": {
+    "src/*/**.ts": [
+      "prettier --write",
+      "npm run lint"
+    ]
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "envalid": "^7.3.1",
+    "express": "^4.18.2",
+    "helmet": "^6.0.1",
+    "hpp": "^0.2.3",
+    "joi": "^17.7.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.0",
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.14",
+    "@types/hpp": "^0.2.2",
+    "@types/lodash": "^4.14.191",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^18.11.11",
+    "@types/passport": "^1.0.11",
+    "@types/passport-jwt": "^3.0.8",
+    "@types/passport-local": "^1.0.34",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "husky": "^8.0.2",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.1",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.2",
+    "tsconfig-paths": "^4.1.1",
+    "typescript": "*"
+  }
+}

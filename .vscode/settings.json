@@ -1,0 +1,6 @@
+{
+    "editor.fontFamily": "'Fira Code Medium', Consoles, 'Courier New', monospace",
+    "prettier.tabWidth": 2,
+    "editor.indentSize": 2,
+    "editor.tabSize": 2,
+}
