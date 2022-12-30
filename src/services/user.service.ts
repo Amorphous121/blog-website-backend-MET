@@ -21,10 +21,7 @@ Array<LeanDocument<TDefaultUserDocumentReturnType>>
 export const getUserById = async (
   id: string
 ): Promise<LeanDocument<TDefaultUserDocumentReturnType>> => {
-  const user = await UserModel.findById(id, defaultUserProjection).lean();
-
-  if (user == null) throw new HttpException(404, 'No such user exists with given id');
-  return user;
+  return await UserModel.findById(id, defaultUserProjection).lean();
 };
 
 export const createUser = async (payload: ICreateUser): Promise<TDefaultUserDocumentReturnType> => {

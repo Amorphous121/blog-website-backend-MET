@@ -1,5 +1,6 @@
+
 declare module 'express-serve-static-core' {
   export interface Request {
-    user: any
+    user: Record<string, any>
   }
 }

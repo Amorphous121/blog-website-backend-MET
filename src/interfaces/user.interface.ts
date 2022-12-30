@@ -29,3 +29,11 @@ export interface IUpdateUser {
   email: string
   username: string
 }
+
+export interface ITokenData {
+  _id: string
+  iat: number
+  exp: number
+  aud: string
+  sub: string
+}

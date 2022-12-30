@@ -1,3 +1,4 @@
+import HttpException from 'exception/HttpException';
 import { RequestHandler } from 'express';
 import { ICreateUser } from 'interfaces/user.interface';
 import { getSuccessResponse } from 'utils/response.util';
@@ -23,6 +24,7 @@ export const getUserById: RequestHandler<{ userId: string }> = async (req, res, 
   try {
     const { userId } = req.params;
     const user = await UserService.getUserById(userId);
+    if (user == null) throw new HttpException(404, "User doesn't exists with given id.");
     return res.status(200).json({ user });
   } catch (error) {
     return next(error);
