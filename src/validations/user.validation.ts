@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { ID_VALIDATION_REGEX } from 'utils/app.constants';
 
 export const CreateUserValidation = {
   body: Joi.object({
@@ -19,10 +20,7 @@ export const UpdateUserValidation = {
     password: Joi.string().min(4).optional()
   }).not({}),
   params: Joi.object({
-    userId: Joi.string()
-      .regex(/^[0-9a-fA-F]{24}$/)
-      .message('Invalid userId given!')
-      .required()
+    userId: Joi.string().regex(ID_VALIDATION_REGEX).message('Invalid userId given!').required()
   })
 };
 

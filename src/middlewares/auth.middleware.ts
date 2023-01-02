@@ -20,7 +20,7 @@ export const checkAuthorization = (roles: string | string[]): RequestHandler => 
 export const checkAuthentication: RequestHandler = (req, res, next) => {
   return passport.authenticate('jwt', { session: false }, (err, user, info) => {
     console.log(user);
-    if (user == null || err != null) next(new HttpException(401, 'Invalid token!'));
+    if (user == null || user === false || err != null) { next(new HttpException(401, 'Invalid token!')); }
     req.user = user;
     next();
   })(req, res, next);

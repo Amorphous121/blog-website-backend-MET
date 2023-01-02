@@ -31,7 +31,7 @@ export const defaultPreFindMiddleware: PreMiddlewareFunction = async function (
     this.setQuery({ ...queryFilters, isDeleted: false });
   }
   if (!('sort' in queryOptions)) {
-    void this.setOptions({ ...queryOptions, sort: { createAt: -1 } });
+    void this.setOptions({ ...queryOptions, sort: { createdAt: -1 } });
   }
   next();
 };
