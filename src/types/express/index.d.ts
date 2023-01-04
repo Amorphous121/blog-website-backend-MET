@@ -1,7 +1,7 @@
-import { IUser } from 'interfaces/user.interface'
+import { IUser } from 'interfaces/user.interface';
 
 // to make the file a module and avoid the TypeScript error
-export {}
+export {};
 
 declare global {
   namespace Express {
@@ -10,4 +10,4 @@ declare global {
       user?: Omit<IUser, 'password'>
     }
   }
-};
+}

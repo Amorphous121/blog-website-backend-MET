@@ -1,12 +1,7 @@
 import { model, Schema } from 'mongoose';
 
 import { IConnection } from 'interfaces/connection.interface';
-import {
-  defaultPreFindMiddleware,
-  defaultRegexForMiddlewares,
-  defaultSchemaFields,
-  schemaOptions
-} from './schema-utils';
+import { defaultPreFindMiddleware, defaultRegexForMiddlewares, defaultSchemaFields, schemaOptions } from './schema-utils';
 
 const connectionSchema = new Schema<IConnection>(
   {

@@ -1,17 +1,12 @@
 import { model, Schema } from 'mongoose';
 
 import { IComment } from 'interfaces/comment.interface';
-import {
-  defaultPreFindMiddleware,
-  defaultRegexForMiddlewares,
-  defaultSchemaFields,
-  schemaOptions
-} from './schema-utils';
+import { defaultPreFindMiddleware, defaultRegexForMiddlewares, defaultSchemaFields, schemaOptions } from './schema-utils';
 
 const commentSchema = new Schema<IComment>(
   {
     comment: { type: String, required: true },
-    author: { type: Schema.Types.ObjectId, ref: 'user' },
+    commentor: { type: Schema.Types.ObjectId, ref: 'user' },
     blog: { type: Schema.Types.ObjectId, ref: 'user' },
     ...defaultSchemaFields
   },

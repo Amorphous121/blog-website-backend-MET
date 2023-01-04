@@ -1,7 +1,4 @@
-export const getSuccessResponse = (
-  message: string,
-  data: Record<string, any>
-): Record<string, any> => {
+export const getSuccessResponse = (message: string, data: Record<string, any>): Record<string, any> => {
   return {
     status: true,
     message,

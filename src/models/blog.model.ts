@@ -1,12 +1,7 @@
 import { model, Schema } from 'mongoose';
 
 import { IBlog } from 'interfaces/blog.interface';
-import {
-  schemaOptions,
-  defaultSchemaFields,
-  defaultPreFindMiddleware,
-  defaultRegexForMiddlewares
-} from './schema-utils';
+import { schemaOptions, defaultSchemaFields, defaultPreFindMiddleware, defaultRegexForMiddlewares } from './schema-utils';
 
 const blogSchema = new Schema<IBlog>(
   {

@@ -1,4 +1,5 @@
 import Joi from 'joi';
+
 import { ID_VALIDATION_REGEX } from 'utils/app.constants';
 
 export const CreateUserValidation = {
@@ -28,5 +29,11 @@ export const UserLoginValidation = {
   body: Joi.object({
     usernameOrEmail: Joi.string().required(),
     password: Joi.string().required()
+  })
+};
+
+export const DeleteUserValidation = {
+  params: Joi.object({
+    userId: Joi.string().regex(ID_VALIDATION_REGEX).message('Invalid userId given!').required()
   })
 };

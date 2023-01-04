@@ -1,12 +1,7 @@
 import { model, Schema } from 'mongoose';
 
 import { ILikesCount } from 'interfaces/likes-count.interface';
-import {
-  defaultPreFindMiddleware,
-  defaultRegexForMiddlewares,
-  defaultSchemaFields,
-  schemaOptions
-} from './schema-utils';
+import { defaultPreFindMiddleware, defaultRegexForMiddlewares, defaultSchemaFields, schemaOptions } from './schema-utils';
 
 const likesCountSchema = new Schema<ILikesCount>(
   {

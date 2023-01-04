@@ -14,12 +14,7 @@ class ErrorHandler {
     return message;
   };
 
-  public mainHandler = (
-    err: HttpException,
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): void => {
+  public mainHandler = (err: HttpException, req: Request, res: Response, next: NextFunction): void => {
     if (CONFIG.NODE_ENV === NODE_ENVs.DEVELOPMENT) {
       console.log(err);
     }
@@ -31,12 +26,7 @@ class ErrorHandler {
     res.status(status).json({ message });
   };
 
-  public validationErrorHandler = (
-    err: HttpException | ValidationError,
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): void => {
+  public validationErrorHandler = (err: HttpException | ValidationError, req: Request, res: Response, next: NextFunction): void => {
     if (err instanceof ValidationError && err.isJoi) {
       const transformedError = new HttpException(422, this.getErrorMessage(err));
       return this.mainHandler(transformedError, req, res, next);

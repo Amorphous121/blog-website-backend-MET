@@ -6,9 +6,7 @@ import WinstonDaily from 'winston-daily-rotate-file';
 import CONFIG from 'config';
 
 type logLevel = 'error' | 'info' | 'debug';
-const logFormat = Winston.format.printf(
-  ({ timestamp, level, message }: { [key: string]: string }) => `${timestamp} ${level} ${message}`
-);
+const logFormat = Winston.format.printf(({ timestamp, level, message }: { [key: string]: string }) => `${timestamp} ${level} ${message}`);
 const logDirPath = path.join(__dirname, CONFIG.LOG_DIR);
 
 if (!fs.existsSync(logDirPath)) {
@@ -35,18 +33,8 @@ const getWinstonConsoleLogger = (logLevel: logLevel): Winston.transports.Console
   });
 
 const logger = Winston.createLogger({
-  format: Winston.format.combine(
-    Winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-    Winston.format.errors({ stack: true }),
-    logFormat
-  ),
-  transports: [
-    getWinstonConsoleLogger('info'),
-    // getWinstonConsoleLogger('error'),
-    // getWinstonConsoleLogger('debug'),
-    getWinstonRotatingFileLogger('info'),
-    getWinstonRotatingFileLogger('error')
-  ]
+  format: Winston.format.combine(Winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), Winston.format.errors({ stack: true }), logFormat),
+  transports: [getWinstonConsoleLogger('info'), getWinstonRotatingFileLogger('info'), getWinstonRotatingFileLogger('error')]
 });
 
 const stream = {

@@ -1,9 +1,4 @@
-import {
-  CallbackWithoutResultAndOptionalError,
-  PreMiddlewareFunction,
-  Query,
-  Schema
-} from 'mongoose';
+import { CallbackWithoutResultAndOptionalError, PreMiddlewareFunction, Query, Schema } from 'mongoose';
 
 export const schemaOptions = {
   timestamps: true,
@@ -17,8 +12,7 @@ export const defaultSchemaFields = {
   deletedBy: { type: Schema.Types.ObjectId, ref: 'user', default: null }
 };
 
-export const defaultRegexForMiddlewares =
-  /\b(count|countDocuments|find|findOne|findOneAndUpdate|findById|find|update|updateOne)\b/;
+export const defaultRegexForMiddlewares = /\b(count|countDocuments|find|findOne|findOneAndUpdate|findById|find|update|updateOne)\b/;
 
 export const defaultPreFindMiddleware: PreMiddlewareFunction = async function (
   this: Query<any, any, Record<string, never>, any>,

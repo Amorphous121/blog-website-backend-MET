@@ -2,12 +2,7 @@ import { model, Schema } from 'mongoose';
 
 import { IUserLikes } from 'interfaces/user-likes.interface';
 import { ENTITY_TYPE } from 'enums';
-import {
-  schemaOptions,
-  defaultSchemaFields,
-  defaultPreFindMiddleware,
-  defaultRegexForMiddlewares
-} from './schema-utils';
+import { schemaOptions, defaultSchemaFields, defaultPreFindMiddleware, defaultRegexForMiddlewares } from './schema-utils';
 
 const userLikesSchema = new Schema<IUserLikes>(
   {

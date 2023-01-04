@@ -6,6 +6,12 @@ import { IUser } from './user.interface';
 
 export interface IComment extends IDefaultFields, IDateUpdateFields {
   comment: string
-  author: ObjectId | PopulatedDoc<IUser>
+  commentor: ObjectId | PopulatedDoc<IUser>
   blog: ObjectId | PopulatedDoc<IBlog>
+}
+
+export interface IDeletedPayload {
+  isDeleted: boolean
+  deletedBy: string
+  deletedAt: Date
 }

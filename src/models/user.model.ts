@@ -2,12 +2,7 @@ import { Model, model, Schema } from 'mongoose';
 import { hash, compare } from 'bcrypt';
 
 import { IUser, IUserMethods } from '../interfaces/user.interface';
-import {
-  schemaOptions,
-  defaultSchemaFields,
-  defaultPreFindMiddleware,
-  defaultRegexForMiddlewares
-} from './schema-utils';
+import { schemaOptions, defaultSchemaFields, defaultPreFindMiddleware, defaultRegexForMiddlewares } from './schema-utils';
 import CONFIG from 'config';
 
 type TUserModel = Model<IUser, {}, IUserMethods>;
@@ -30,10 +25,7 @@ userSchema.methods.getFullName = function (this: IUser) {
   return `${this.firstName} ${this.lastName}`;
 };
 
-userSchema.methods.comparePassword = async function (
-  this: IUser,
-  password: string
-): Promise<boolean> {
+userSchema.methods.comparePassword = async function (this: IUser, password: string): Promise<boolean> {
   return await compare(password, this.password);
 };
 
