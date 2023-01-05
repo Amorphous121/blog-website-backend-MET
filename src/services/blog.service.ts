@@ -8,7 +8,7 @@ import { getDeletePayload } from 'utils/helper';
 import * as CommentService from 'services/comment.service';
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const getBlogCount = (userId: string, blogId: string) => BlogModel.countDocuments({ author: userId, _id: blogId });
+export const getBlogCount = (userId: string, blogId: string) => BlogModel.countDocuments({ author: userId, _id: blogId });
 
 export const createBlog = async (userId: string, blogPayload: Pick<IBlog, 'content' | 'title'>): Promise<IBlog> => {
   const blog = (await BlogModel.create({ ...blogPayload, author: userId })).toObject();
@@ -39,6 +39,6 @@ export const updateBlog = async (
 export const deleteBlog = async (userId: string, blogId: string): Promise<void> => {
   const blogCount = await getBlogCount(userId, blogId);
   if (blogCount === 0) throw new HttpException(404, "Blog doesn't exists with given id!");
-  await BlogModel.updateMany({ author: userId }, { ...getDeletePayload(userId) });
+  await BlogModel.updateMany({ author: userId }, { $set: { ...getDeletePayload(userId) } });
   await CommentService.deleteCommentsByBlogId(userId, blogId);
 };
